@@ -64,8 +64,8 @@ class ApplyMigrations {
       }
 
       final migrationsToApply = direction == MigrationDirections.down
-          ? orderedMigrations.take(1).toList()
-          : orderedMigrations.toList();
+          ? orderedMigrations.take(1)
+          : orderedMigrations;
       final plannedMigrations = migrationsToApply.map(_plannedMigration).toList();
 
       if (dryRun) {
