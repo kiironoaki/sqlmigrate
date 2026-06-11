@@ -63,12 +63,10 @@ class ApplyMigrations {
         return const Result.ok([]);
       }
 
-      final plannedMigrations =
-          orderedMigrations //
-              .toList()
-              .sublist(0, 1)
-              .map(_plannedMigration)
-              .toList();
+      final migrationsToApply = direction == MigrationDirections.down
+          ? orderedMigrations.take(1).toList()
+          : orderedMigrations.toList();
+      final plannedMigrations = migrationsToApply.map(_plannedMigration).toList();
 
       if (dryRun) {
         return Result.ok(plannedMigrations);
